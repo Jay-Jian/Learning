@@ -1,0 +1,72 @@
+# import colorama
+# import time
+# import os
+
+# colorama.init(True)#清空樣式
+# i=1
+# while True:
+
+# 	while i<6:
+# 		p = colorama.Back.RED+"  "
+# 		os.system("cls")
+# 		print(p)
+# 		print(i)
+# 		i+=1
+# 		time.sleep(1)
+
+# 	while i==6:
+# 		p = (colorama.Back.YELLOW+"  ")
+# 		os.system("cls")
+# 		print("   "+p)
+# 		print(i)#("   ",i)解決計時未出現問題
+# 		i+=1
+# 		time.sleep(1)
+
+
+# 	while i<=10:
+# 		p = (colorama.Back.GREEN+"  ")
+# 		os.system("cls")
+# 		print("      "+p)
+# 		i%=10
+# 		print(i)
+# 		i+=1
+# 		time.sleep(1)
+# 		if i==1:
+# 			break
+# 	os.system("cls")
+
+import colorama
+import time
+import os
+
+colorama.init(True)#清空樣式
+
+while True:
+	os.system("cls")
+	for i in range(1,11):
+		if i < 6:
+			p = colorama.Back.RED+"  "
+			print(p)
+			print(i)
+			i+=1
+			time.sleep(1)
+			os.system("cls")
+		elif i == 6:
+			p = colorama.Back.YELLOW+"  "
+			print("   "+p)
+			print(i)
+			time.sleep(1)
+			os.system("cls")
+		elif i < 10:
+			p = colorama.Back.GREEN+"  "
+			print("      "+p)
+			print(i)
+			time.sleep(1)
+			os.system("cls")
+		else:
+			p = colorama.Back.GREEN+"  "
+			print("      "+p)
+			i=0
+			print(i)
+			time.sleep(1)
+			os.system("cls")
