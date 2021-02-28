@@ -1,0 +1,58 @@
+import wx
+import wx.xrc
+import wx.richtext
+import Notebook
+import codecs 
+import os 
+
+class Notestart(Notebook.Note):
+	file=""
+	def click1( self, event ):
+		self.file=""
+		self.m_richText1.Clear()
+		self.SetTitle("記事本") #如果開新檔案視窗的標題一定是記事本
+
+	def click2( self, event ):
+		self.file=wx.FileSelector(
+			"請選擇檔案",
+			wildcard="文字檔案|*.txt",
+			flags=wx.FD_OPEN,
+			default_extension=""
+			) #這裡返回的是字符串形式的路徑名
+		if self.file!="":
+			with codecs.open(self.file,mode="r",encoding="utf-8") as file2:
+				self.m_richText1.SetValue(file2.read())
+			self.SetTitle("記事本-"+os.path.basename(self.file)) #os.path.basename=擷取檔名
+
+	def click3( self, event ):
+		Content=self.m_richText1.GetValue()
+		if self.file=="":
+			self.file=wx.FileSelector(
+				"請選擇要儲存的檔名",
+				wildcard="文字檔案|*.txt",
+				flags=wx.FD_SAVE,
+				default_extension=""
+				)
+		if self.file!="":
+			with codecs.open(self.file,mode="w",encoding="utf-8") as file:
+				file.write(Content)
+			self.SetTitle("記事本-"+os.path.basename(self.file))
+
+	def click4( self, event ):
+		wx.Exit()
+	
+	def click5( self, event ):
+		w2.m_staticText2.SetLabel("作者: 曾祥易\n信箱: mike79.tseng@gmail.com\nLine ID: 0937571669")
+		w2.Show()
+
+
+
+
+
+p=wx.App()
+w=Notestart(None)
+w.Show() #顯示視窗
+w.SetTitle("記事本")
+w2=Notebook.MyDialog1(None)
+w2.SetTitle("關於作者")
+p.MainLoop()
