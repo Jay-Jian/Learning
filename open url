@@ -1,0 +1,7 @@
+import sys
+import webbrowser
+try:
+	weburl = sys.argv[1]
+	webbrowser.get("windows-default").open(weburl,new=2,autoraise=True)
+except Exception as e:
+	print("請輸入網址！")
