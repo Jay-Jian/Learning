@@ -1,0 +1,170 @@
+# import sys as p #【as p==給sys 一個代號，往後可簡寫為該代號】
+
+# print(sys.argv)
+# for d in p.argv:
+#	print("參數:",d)
+
+
+#  from sys import argv #【將sys與argv指令綁定，往後使用argv可省略sys】
+
+# for d in argv:
+#	print("參數:",d)
+
+
+# #cmd指令
+# #tasklist==現在電腦執行的程式
+# #dir=show出當前目錄下的檔案
+# #cls==清空畫面
+
+
+## 載入指令獲取數據後再進行比對，輸出結果【是否符合條件】
+
+# import os
+
+# os.system("tasklist")
+
+# p=os.popen("tasklist")
+# r=p.read()
+# if "notepad.exe" in r:
+# 	print("現在有開啟記事本")
+# else: 
+# 	print("沒有開啟記事本")
+#  print(r)
+
+
+##開啟檔案【1.read=讀取、2.write=寫入、3.close=關閉】
+##常用類型【1.w=覆寫、2.a=附加、3.r=讀取、4.b=二進位】
+
+# import codecs
+# f=codecs.open("1.txt","w","utf-8")
+# f=codecs.open("1.txt","a","utf-8")
+# f.write("123456 321321")
+# f.close()
+
+
+# import codecs
+# f=codecs.open("1.txt","r","utf-8")
+# d=f.read()
+# f.close()
+# print(d)
+
+##讓資料在限定範圍內使用特定指令
+# with codecs.open("1.txt","r","utf-8") as f:
+# 	d=f.read()
+# 	print(d)
+	
+
+# import os
+# os.remove("1.txt")
+# os.mkdir("xxx")
+# os.rmdir("xxx")
+# d=os.listdir(".")
+# print(d)
+
+# for d in os.listdir("."):
+# for d in os.listdir("../"):#上層
+# for d in os.listdir("../../"):#上上層
+# for d in os.listdir("xxx/"):#目錄中指定名稱資料夾【"xxx"】
+# for d in os.listdir("../xxx/"):#往上後再往下；上一層後進入指定名稱資料夾【"xxx"】
+# print(d)
+
+
+# for x in os.listdir("."):
+# 	print("當前目錄",x)
+
+# for x in os.listdir("../"):
+# 	print("上層目錄",x)
+
+# for x in os.listdir("xxx/")
+# 	print("下層目錄",x)
+
+
+# print("工作路徑:",os.getcwd())
+# os.chdir("../")
+# print("工作路徑:",os.getcwd())
+# print(os.path.isdir("11-11.py"))
+
+# for d in os.listdir("./"):
+# 	if os.path.isdir(d)==True:
+# 		print("[資料夾]",end="")#print預設會有\n,使用【,end=""】可使字串為空且不換行
+
+# 	else:
+# 		print("[檔案]",end="")
+# 	print(d)
+
+# print(os.path.exists("11-11.py"))
+
+# if os.path.exists("1.txt")==True:
+# 	os.remove("1.txt")
+
+# print(os.path.basename("C:\\Users\\user\\Desktop\\python\\11-11.py"))
+#\後字元在windows系統中會被認定與後方字元組成特殊字元
+#解決方案：
+#1.將\改為/；2.將\改為\\
+
+# print(os.path.dirname("C:\\Users\\user\\Desktop\\python\\11-11.py"))
+# print(os.path.getsize("C:\\Users\\user\\Desktop\\python\\11-11.py"))
+
+
+##檔案大小換算
+# d=os.path.getsize("C:\\Users\\user\\Desktop\\python\\11-11.py")
+# r=["位元組","KB","MB","GB"]
+# i=0
+# while d>1024:
+# 	d/=1024
+# 	i+=1
+# print(round(d,2),r[i])#round取最接近整數值[無條件進位至整數]
+#round(d,x)#x=小數點後幾位數，如上例子取至小數點後第二位
+
+import time
+import os
+
+# print("開始")
+# time.sleep(3)
+# print("結束")
+
+# i=0
+# while i<=100:
+# 	os.system("cls")
+# 	print(i)
+# 	i+=1
+# 	time.sleep(1)
+
+# print(time.time())
+# time.sleep(1)
+# print(time.time())
+
+
+# i=0
+# while i<=100:
+# 	print(time.time())#毫秒=千分之一秒
+# 	i+=1
+
+
+# while True:
+# 	os.system("cls")
+# 	print(time.strftime("%Y-%m-%d %H:%M:%S"))
+# 	time.sleep(1)
+
+
+import colorama
+colorama.init(True)
+
+import prettytable
+p = prettytable.PrettyTable(["Id","Title"],encoding="utf-8")
+p.align["Title"]="r"
+
+p.add_row(["1",colorama.Fore.GREEN+"AAA"+colorama.Style.RESET_ALL])
+p.add_row(["2",colorama.Fore.GREEN+"BBB"+colorama.Style.RESET_ALL])
+print(p)
+
+# import colorama
+
+# colorama.init(True)
+
+# print("ABC")
+# print(colorama.Style.BRIGHT+"ABC")
+# print(colorama.Fore.GREEN+"ABC"+"123")
+# print(colorama.Back.GREEN+"ABC"+"123")
+
+
