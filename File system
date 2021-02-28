@@ -1,0 +1,94 @@
+import codecs
+import os
+import shutil
+
+x = -1  #設定x的初始值
+while x!=0: #當x變數不等於0時(使用者沒輸入離開程式時)
+    os.system("cls") #將之前的畫面清空
+    if x==1:
+        for f in os.listdir(os.getcwd()):
+            if os.path.isfile(os.getcwd()+"\\"+f):
+                print(f)
+        print("") #空一行
+    elif x==2:
+        for f in os.listdir(os.getcwd()):
+            if os.path.isfile(os.getcwd()+"\\"+f) == False:
+                print(f)
+        print("")
+    elif x==3:
+        i=0
+        p=[] #空的串列
+        for f in os.listdir(os.getcwd()):
+            if os.path.isfile(os.getcwd()+"\\"+f) != False:
+                print(i,f)
+                p.append(f)
+                i+=1
+        print("")
+        t=int(input("請輸入檔案索引:"))
+        print("-------檔案開始-------")
+        q=codecs.open(p[t], "r" ,"utf-8") #開啟檔案
+        print(q.read()) #讀取檔案並顯示出來
+        q.close()
+        print("-------檔案結束-------")
+        print("")
+    elif x==4:
+        i=0
+        p=[]
+        for f in os.listdir(os.getcwd()):
+            if os.path.isfile(os.getcwd() + "\\" + f) != False:
+                print(i, f)
+                p.append(f)
+                i += 1
+        print("")
+        t = int(input("請輸入檔案索引:"))
+        os.remove(p[t])
+        print("")
+    elif x==5:
+        i=0
+        p=[]
+        for f in os.listdir(os.getcwd()):
+            if os.path.isfile(os.getcwd()+"\\"+f)!=False:
+                print(i,f)
+                p.append(f)
+                i+=1
+        print("")
+        t = int(input("請輸入檔案索引:"))
+        os.system(p[t])
+        print("")
+    elif x==6:
+        i=0
+        p=[]
+        for f in os.listdir(os.getcwd()):
+            if os.path.isfile(os.getcwd()+"\\"+f) == False:
+                print(i,f)
+                p.append(f)
+                i+=1
+        print("")
+        t = int(input("請輸入資料夾索引:"))
+        os.chdir(p[t]+"/")
+        print("")
+    elif x==7:
+         i=0
+         p=[]
+         for f in os.listdir(os.getcwd()):
+             if os.path.isfile(os.getcwd()+"\\"+f) == False:
+                print(i,f)
+                p.append(f)
+                i+=1
+         print("")
+         t = int(input("請輸入資料夾索引:"))
+         shutil.rmtree(p[t]) #連同資料夾下的檔案一起刪除
+         print("")
+    elif x==8:
+        os.chdir("../")
+    print("工作路徑:",os.getcwd())
+    print("\t(0)","離開程式")
+    print("\t(1)","列出檔案")
+    print("\t(2)","列出資料夾")
+    print("\t(3)","顯示檔案內容")
+    print("\t(4)","刪除檔案")
+    print("\t(5)","執行檔案")
+    print("\t(6)","進入資料夾")
+    print("\t(7)","刪除資料夾")
+    print("\t(8)","回上層資料夾")
+    x = int(input("操作:"))
